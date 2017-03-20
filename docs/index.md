@@ -52,7 +52,7 @@
     1. Install via ```go get```
     
         ```
-        go get github.com/sfletc/scram2 github.com/sfletc/scram2pkg github.com/alexflint/go-arg github.com/montanaflynn/stats
+        go get github.com/sfletc/scram2 github.com/sfletc/scram2pkg github.com/spf13/cobra github.com/spf13/viper github.com/montanaflynn/stats
         ```
     2. Navigate to scram2 directory containing main.go (e.g. ```GOPATH/src/github.com/sfletc/scram2/```)
         
