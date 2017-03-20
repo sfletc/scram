@@ -1,6 +1,6 @@
 ## Workflow
 
-![workflow](https://cloud.githubusercontent.com/assets/5491692/23152639/f4db7328-f84e-11e6-9024-776da880d4c6.png)
+![workflow](https://cloud.githubusercontent.com/assets/5491692/24032091/fa4b5ea4-0b31-11e7-8b5d-e5fdd179eb76.png)
 
 
 ## Worked Example
@@ -49,17 +49,15 @@
 
 - Go(lang) 1.8+ is required
     
-    1. Clone the repo
-    
-        ```git clone https://github.com/sfletc/scram2.git```
-    2. Install dependencies
+    1. Install via ```go get```
     
         ```
-        go get github.com/sfletc/scram2pkg github.com/alexflint/go-arg github.com/montanaflynn/stats
+        go get github.com/sfletc/scram2 github.com/sfletc/scram2pkg github.com/alexflint/go-arg github.com/montanaflynn/stats
         ```
-    3. Navigate to scram2 directory containing scram2.go (e.g. /scram2-master/scram2)
+    2. Navigate to scram2 directory containing main.go (e.g. ```GOPATH/src/github.com/sfletc/scram2/```)
         
-        ```go build``` 
+        ```go install```
+    3. scram2 will be in the ```GOPATH/bin``` directory
     
 ### 3. Install the scram2_plot package and dependencies:
 
