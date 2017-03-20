@@ -47,18 +47,18 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 			switch {
 			case noSplit == false:
 				d := scram2pkg.AlignReads(a, c, nt)
-				f := scram2pkg.CdpSplitCounts(d, a)
+				f := scram2pkg.CompareSplitCounts(d, a)
 				e := scram2pkg.AlignReads(b, c, nt)
-				g := scram2pkg.CdpSplitCounts(e, b)
-				h := scram2pkg.Cdp(f, g)
-				scram2pkg.CdpToCsv(h, nt, outFilePrefix)
+				g := scram2pkg.CompareSplitCounts(e, b)
+				h := scram2pkg.Compare(f, g)
+				scram2pkg.CompareToCsv(h, nt, outFilePrefix)
 			default:
 				d := scram2pkg.AlignReads(a, c, nt)
-				f := scram2pkg.CdpNoSplitCounts(d, a)
+				f := scram2pkg.CompareNoSplitCounts(d, a)
 				e := scram2pkg.AlignReads(b, c, nt)
-				g := scram2pkg.CdpNoSplitCounts(e, b)
-				h := scram2pkg.Cdp(f, g)
-				scram2pkg.CdpToCsv(h, nt, outFilePrefix)
+				g := scram2pkg.CompareNoSplitCounts(e, b)
+				h := scram2pkg.Compare(f, g)
+				scram2pkg.CompareToCsv(h, nt, outFilePrefix)
 			}
 		}
 	},

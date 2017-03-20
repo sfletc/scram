@@ -50,11 +50,11 @@ scram2 profile -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -l 21,22,24 -o testAlign
 			d := scram2pkg.AlignReads(a, c, nt)
 			switch {
 			case noSplit == false:
-				e := scram2pkg.DenSplit(d, a)
-				scram2pkg.DenToCsv(e, c, nt, outFilePrefix)
+				e := scram2pkg.ProfileSplit(d, a)
+				scram2pkg.ProfileToCsv(e, c, nt, outFilePrefix)
 			default:
-				e := scram2pkg.DenNoSplit(d, a)
-				scram2pkg.DenToCsv(e, c, nt, outFilePrefix)
+				e := scram2pkg.ProfileNoSplit(d, a)
+				scram2pkg.ProfileToCsv(e, c, nt, outFilePrefix)
 
 			}
 		}
