@@ -29,11 +29,11 @@ import (
 	"github.com/spf13/viper"
 
 )
-const version =  "0.1.0"
+const version =  "0.1.1"
 var cfgFile string
 var fastaSet1 string
 var fastaSet2 string
-var len string
+var length string
 var alignTo string
 var outFilePrefix string
 var noSplit bool
@@ -59,7 +59,7 @@ func init() {
 	cobra.OnInitialize(initConfig)
 	RootCmd.PersistentFlags().StringVarP(&alignTo, "alignTo", "r", "","path/to/FASTA reference file")
 	RootCmd.PersistentFlags().StringVarP(&fastaSet1, "fastaSet1", "1", "","comma-seperated path/to/collapsed FASTA file set 1")
-	RootCmd.PersistentFlags().StringVarP(&len, "len", "l", "","comma-seperated read (sRNA) lengths to align")
+	RootCmd.PersistentFlags().StringVarP(&length, "length", "l", "","comma-seperated read (sRNA) lengths to align")
 	RootCmd.PersistentFlags().StringVarP(&outFilePrefix, "outFilePrefix", "o", "","path/to/outfile prefix (len.csv will be appended)")
 	RootCmd.PersistentFlags().BoolVar(&noSplit, "noSplit", false, "Do not split alignment count for each read by the number of times it aligns")
 	RootCmd.PersistentFlags().Lookup("noSplit").NoOptDefVal="true"
