@@ -42,7 +42,7 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 		a := scram2pkg.SeqLoad(strings.Split(fastaSet1,","), minLen, maxLen, minCount)
 		b := scram2pkg.SeqLoad(strings.Split(fastaSet2,","), minLen, maxLen, minCount)
 		c := scram2pkg.RefLoad(alignTo)
-		for _, nt := range strings.Split(len,",") {
+		for _, nt := range strings.Split(length,",") {
 			nt,_ := strconv.Atoi(nt)
 			switch {
 			case noSplit == false:

@@ -45,7 +45,7 @@ scram2 profile -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -l 21,22,24 -o testAlign
 	Run: func(cmd *cobra.Command, args []string) {
 		a := scram2pkg.SeqLoad(strings.Split(fastaSet1, ","), minLen, maxLen, minCount)
 		c := scram2pkg.RefLoad(alignTo)
-		for _, nt := range strings.Split(len, ",") {
+		for _, nt := range strings.Split(length, ",") {
 			nt, _ := strconv.Atoi(nt)
 			d := scram2pkg.AlignReads(a, c, nt)
 			switch {
