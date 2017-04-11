@@ -1,6 +1,6 @@
 ## Workflow
 
-![workflow](https://cloud.githubusercontent.com/assets/5491692/24888974/92f8c7a0-1eaa-11e7-82df-386dde10c8c9.png)
+![workflow](https://cloud.githubusercontent.com/assets/5491692/24889111/82a30c7a-1eab-11e7-84ca-c1b096e14615.png)
 
 
 ## Worked Example
