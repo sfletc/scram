@@ -27,6 +27,8 @@ import (
 	"github.com/sfletc/scram2pkg"
 	"strings"
 	"strconv"
+	"fmt"
+	"os"
 )
 
 
@@ -39,8 +41,12 @@ For example:
 
 scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2c.fa -l 21,22,24 -o testAlign`,
 	Run: func(cmd *cobra.Command, args []string) {
-		a := scram2pkg.SeqLoad(strings.Split(fastaSet1,","), minLen, maxLen, minCount)
-		b := scram2pkg.SeqLoad(strings.Split(fastaSet2,","), minLen, maxLen, minCount)
+		if readFileType != "cfa" && readFileType != "fa" && readFileType != "fq" {
+			fmt.Println("\nCan't parse read file type " + readFileType)
+			os.Exit(1)
+		}
+		a := scram2pkg.SeqLoad(strings.Split(fastaSet1,","), readFileType,minLen, maxLen, minCount)
+		b := scram2pkg.SeqLoad(strings.Split(fastaSet2,","), readFileType,minLen, maxLen, minCount)
 		c := scram2pkg.RefLoad(alignTo)
 		for _, nt := range strings.Split(length,",") {
 			nt,_ := strconv.Atoi(nt)
@@ -66,15 +72,5 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 
 func init() {
 	RootCmd.AddCommand(compareCmd)
-	//compareCmd.Flags().StringVarP(&alignTo, "alignTo", "r", "","path/to/FASTA reference file")
-	//compareCmd.Flags().StringVarP(&fastaSet1, "fastaSet1", "1", "","comma-seperated path/to/collapsed FASTA file set 1")
 	compareCmd.Flags().StringVarP(&fastaSet2, "fastaSet2", "2", "","comma-seperated path/to/collapsed FASTA file set 2")
-	//compareCmd.Flags().StringVarP(&len, "len", "l", "","comma-seperated read (sRNA) lengths to align")
-	//compareCmd.Flags().StringVarP(&outFilePrefix, "outFilePrefix", "o", "","path/to/outfile prefix (len.csv will be appended)")
-	//compareCmd.Flags().BoolVar(&noSplit, "noSplit", false, "Do not split alignment count for each read by the number of times it aligns")
-	//compareCmd.Flags().Lookup("noSplit").NoOptDefVal="true"
-	//compareCmd.Flags().IntVar(&minLen, "minLen", 18, "Minimum read length to include for RPMR normalization")
-	//compareCmd.Flags().IntVar(&maxLen, "maxLen", 32, "Maximum read length to include for RPMR normalization")
-	//compareCmd.Flags().Float64Var(&minCount, "minCount", 1.0, "Minimum read count for alignment and to include for RPMR normalization")
-
 }

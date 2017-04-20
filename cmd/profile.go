@@ -27,6 +27,8 @@ import (
 	"github.com/sfletc/scram2pkg"
 	"strings"
 	"strconv"
+	"fmt"
+	"os"
 )
 
 // profileCmd represents the profile command
@@ -43,7 +45,11 @@ scram2 profile -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -l 21,22,24 -o testAlign
 
 `,
 	Run: func(cmd *cobra.Command, args []string) {
-		a := scram2pkg.SeqLoad(strings.Split(fastaSet1, ","), minLen, maxLen, minCount)
+		if readFileType != "cfa" && readFileType != "fa" && readFileType != "fq" {
+			fmt.Println("\nCan't parse read file type " + readFileType)
+			os.Exit(1)
+		}
+		a := scram2pkg.SeqLoad(strings.Split(fastaSet1, ","), readFileType,minLen, maxLen, minCount)
 		c := scram2pkg.RefLoad(alignTo)
 		for _, nt := range strings.Split(length, ",") {
 			nt, _ := strconv.Atoi(nt)

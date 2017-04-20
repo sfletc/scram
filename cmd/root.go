@@ -32,6 +32,7 @@ import (
 const version =  "0.1.2"
 var cfgFile string
 var fastaSet1 string
+var readFileType string
 var fastaSet2 string
 var length string
 var alignTo string
@@ -59,6 +60,7 @@ func init() {
 	cobra.OnInitialize(initConfig)
 	RootCmd.PersistentFlags().StringVarP(&alignTo, "alignTo", "r", "","path/to/FASTA reference file")
 	RootCmd.PersistentFlags().StringVarP(&fastaSet1, "fastaSet1", "1", "","comma-seperated path/to/collapsed FASTA file set 1")
+	RootCmd.PersistentFlags().StringVarP(&readFileType, "readFileType", "t", "cfa","Read file type: cfa (collapsed FASTA), fa (FASTA), fq (FASTQ).  Files with the extension .qz will be decompressed on the fly")
 	RootCmd.PersistentFlags().StringVarP(&length, "length", "l", "","comma-seperated read (sRNA) lengths to align")
 	RootCmd.PersistentFlags().StringVarP(&outFilePrefix, "outFilePrefix", "o", "","path/to/outfile prefix (len.csv will be appended)")
 	RootCmd.PersistentFlags().BoolVar(&noSplit, "noSplit", false, "Do not split alignment count for each read by the number of times it aligns")
