@@ -49,7 +49,7 @@ scram2 profile -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -l 21,22,24 -o testAlign
 			fmt.Println("\nCan't parse read file type " + readFileType)
 			os.Exit(1)
 		}
-		a := scram2pkg.SeqLoad(strings.Split(fastaSet1, ","), readFileType,minLen, maxLen, minCount)
+		a := scram2pkg.SeqLoad(strings.Split(fastaSet1, ","), readFileType,adapter,minLen, maxLen, minCount)
 		c := scram2pkg.RefLoad(alignTo)
 		for _, nt := range strings.Split(length, ",") {
 			nt, _ := strconv.Atoi(nt)

@@ -29,7 +29,7 @@ import (
 	"github.com/spf13/viper"
 
 )
-const version =  "0.1.2"
+const version =  "0.1.3"
 var cfgFile string
 var fastaSet1 string
 var readFileType string
@@ -41,6 +41,7 @@ var noSplit bool
 var minLen int
 var maxLen int
 var minCount float64
+var adapter string
 
 var RootCmd = &cobra.Command{
 	Use:   "scram2",
@@ -59,8 +60,8 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 	RootCmd.PersistentFlags().StringVarP(&alignTo, "alignTo", "r", "","path/to/FASTA reference file")
-	RootCmd.PersistentFlags().StringVarP(&fastaSet1, "fastaSet1", "1", "","comma-seperated path/to/collapsed FASTA file set 1")
-	RootCmd.PersistentFlags().StringVarP(&readFileType, "readFileType", "t", "cfa","Read file type: cfa (collapsed FASTA), fa (FASTA), fq (FASTQ).  Files with the extension .qz will be decompressed on the fly")
+	RootCmd.PersistentFlags().StringVarP(&fastaSet1, "fastaSet1", "1", "","comma-seperated path/to/read file set 1. GZIPped files must have .gz file extension")
+	RootCmd.PersistentFlags().StringVarP(&readFileType, "readFileType", "t", "cfa","Read file type: cfa (collapsed FASTA), fa (FASTA), fq (FASTQ).")
 	RootCmd.PersistentFlags().StringVarP(&length, "length", "l", "","comma-seperated read (sRNA) lengths to align")
 	RootCmd.PersistentFlags().StringVarP(&outFilePrefix, "outFilePrefix", "o", "","path/to/outfile prefix (len.csv will be appended)")
 	RootCmd.PersistentFlags().BoolVar(&noSplit, "noSplit", false, "Do not split alignment count for each read by the number of times it aligns")
@@ -68,6 +69,7 @@ func init() {
 	RootCmd.PersistentFlags().IntVar(&minLen, "minLen", 18, "Minimum read length to include for RPMR normalization")
 	RootCmd.PersistentFlags().IntVar(&maxLen, "maxLen", 32, "Maximum read length to include for RPMR normalization")
 	RootCmd.PersistentFlags().Float64Var(&minCount, "minCount", 1.0, "Minimum read count for alignment and to include for RPMR normalization")
+	RootCmd.PersistentFlags().StringVar(&adapter, "adapter", "nil", "3' adapter sequence to trim - FASTA & FASTQ only")
 }
 
 // initConfig reads in config file and ENV variables if set.

@@ -45,8 +45,8 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 			fmt.Println("\nCan't parse read file type " + readFileType)
 			os.Exit(1)
 		}
-		a := scram2pkg.SeqLoad(strings.Split(fastaSet1,","), readFileType,minLen, maxLen, minCount)
-		b := scram2pkg.SeqLoad(strings.Split(fastaSet2,","), readFileType,minLen, maxLen, minCount)
+		a := scram2pkg.SeqLoad(strings.Split(fastaSet1,","), readFileType,adapter,minLen, maxLen, minCount)
+		b := scram2pkg.SeqLoad(strings.Split(fastaSet2,","), readFileType,adapter,minLen, maxLen, minCount)
 		c := scram2pkg.RefLoad(alignTo)
 		for _, nt := range strings.Split(length,",") {
 			nt,_ := strconv.Atoi(nt)
@@ -72,5 +72,5 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 
 func init() {
 	RootCmd.AddCommand(compareCmd)
-	compareCmd.Flags().StringVarP(&fastaSet2, "fastaSet2", "2", "","comma-seperated path/to/collapsed FASTA file set 2")
+	compareCmd.Flags().StringVarP(&fastaSet2, "fastaSet2", "2", "","comma-seperated path/to/read file set 2. GZIPped files must have .gz file extension")
 }
