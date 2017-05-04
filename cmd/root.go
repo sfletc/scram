@@ -60,7 +60,7 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 	RootCmd.PersistentFlags().StringVarP(&alignTo, "alignTo", "r", "","path/to/FASTA reference file")
-	RootCmd.PersistentFlags().StringVarP(&fastaSet1, "fastaSet1", "1", "","comma-seperated path/to/read file set 1. GZIPped files must have .gz file extension")
+	RootCmd.PersistentFlags().StringVarP(&fastaSet1, "fastxSet1", "1", "","comma-seperated path/to/read file set 1. GZIPped files must have .gz file extension")
 	RootCmd.PersistentFlags().StringVarP(&readFileType, "readFileType", "t", "cfa","Read file type: cfa (collapsed FASTA), fa (FASTA), fq (FASTQ).")
 	RootCmd.PersistentFlags().StringVarP(&length, "length", "l", "","comma-seperated read (sRNA) lengths to align")
 	RootCmd.PersistentFlags().StringVarP(&outFilePrefix, "outFilePrefix", "o", "","path/to/outfile prefix (len.csv will be appended)")

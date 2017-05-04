@@ -72,5 +72,5 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 
 func init() {
 	RootCmd.AddCommand(compareCmd)
-	compareCmd.Flags().StringVarP(&fastaSet2, "fastaSet2", "2", "","comma-seperated path/to/read file set 2. GZIPped files must have .gz file extension")
+	compareCmd.Flags().StringVarP(&fastaSet2, "fastxSet2", "2", "","comma-seperated path/to/read file set 2. GZIPped files must have .gz file extension")
 }
