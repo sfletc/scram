@@ -39,11 +39,13 @@
 
 - Pre-compiled binaries are can be found at:
 
-	[Mac OSX (64bit)](https://bitbucket.org/stevefl/scram2/downloads/scram2_OSX64_v012)
+	[Mac OSX (64bit)](https://bitbucket.org/stevefl/scram2/downloads/scram2osx)
 	
-	[Linux (64 bit)](https://bitbucket.org/stevefl/scram2/downloads/scram2_linux64_v012)
+	[Linux (64 bit)](https://bitbucket.org/stevefl/scram2/downloads/scram2linux)
 	
-	[Windows (64 bit)](https://bitbucket.org/stevefl/scram2/downloads/scram2_win64_v012.exe)
+	[Windows (64 bit)](https://bitbucket.org/stevefl/scram2/downloads/scram2win)
+
+- Execute with the full binary name (e.g. scram2osx) rather than just scram2
 
 ### 2b. Or build from source:
 
