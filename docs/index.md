@@ -45,7 +45,7 @@
 	
 	[Windows (64 bit)](https://bitbucket.org/stevefl/scram2/downloads/scram2win)
 
-- Execute with the full binary name (e.g. scram2osx) rather than just scram2
+- Execute with the full binary name (e.g. scram2osx) rather than scram2
 
 ### 2b. Or build from source:
 
