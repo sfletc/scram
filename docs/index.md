@@ -5,6 +5,8 @@
 
 ## Worked Example
 
+- For a detailed worked example of scram2's capabilities, see the following link (which uses the scram2_docker image):
+
 [Jupyter notebook on nbviewer](https://nbviewer.jupyter.org/github/sfletc/scram2_worked_example/blob/master/scram2_demonstration.ipynb)
 
 ## Installation
@@ -37,7 +39,7 @@
 
 ### 2a. Download scram2 binary:
 
-- Pre-compiled binaries are can be found at:
+- Pre-compiled binaries are can be found at (*nix binaries may need to be made exectauble with chmod +x /path/to/binary):
 
 	[Mac OSX (64bit)](https://bitbucket.org/stevefl/scram2/downloads/scram2osx)
 	
