@@ -39,7 +39,7 @@
 
 ### 2a. Download scram2 binary:
 
-- Pre-compiled binaries are can be found at (*nix binaries may need to be made exectauble with chmod +x /path/to/binary):
+- Pre-compiled binaries are can be found at (*nix binaries may need to be made executable with ```chmod +x /path/to/binary```):
 
 	[Mac OSX (64bit)](https://bitbucket.org/stevefl/scram2/downloads/scram2osx)
 	
