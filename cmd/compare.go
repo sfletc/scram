@@ -41,14 +41,14 @@ For example:
 
 scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2c.fa -l 21,22,24 -o testAlign`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if readFileType != "cfa" && readFileType != "fa" && readFileType != "fq" {
+		if readFileType != "cfa" && readFileType != "fa" && readFileType != "fq" && readFileType != "clean" {
 			fmt.Println("\nCan't parse read file type " + readFileType)
 			os.Exit(1)
 		}
 		a := scram2pkg.SeqLoad(strings.Split(fastaSet1,","), readFileType,adapter,minLen, maxLen, minCount)
 		b := scram2pkg.SeqLoad(strings.Split(fastaSet2,","), readFileType,adapter,minLen, maxLen, minCount)
 		c := scram2pkg.RefLoad(alignTo)
-		for _, nt := range strings.Split(length,",") {
+		for _, nt := range strings.Split(length,",") { 
 			nt,_ := strconv.Atoi(nt)
 			switch {
 			case noSplit == false:
