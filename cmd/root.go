@@ -29,7 +29,7 @@ import (
 	"github.com/spf13/viper"
 
 )
-const version =  "0.1.4"
+const version =  "0.1.5"
 var cfgFile string
 var fastaSet1 string
 var readFileType string
@@ -61,7 +61,7 @@ func init() {
 	cobra.OnInitialize(initConfig)
 	RootCmd.PersistentFlags().StringVarP(&alignTo, "alignTo", "r", "","path/to/FASTA reference file")
 	RootCmd.PersistentFlags().StringVarP(&fastaSet1, "fastxSet1", "1", "","comma-seperated path/to/read file set 1. GZIPped files must have .gz file extension")
-	RootCmd.PersistentFlags().StringVarP(&readFileType, "readFileType", "t", "cfa","Read file type: cfa (collapsed FASTA), fa (FASTA), fq (FASTQ).")
+	RootCmd.PersistentFlags().StringVarP(&readFileType, "readFileType", "t", "cfa","Read file type: cfa (collapsed FASTA), fa (FASTA), fq (FASTQ), clean (BGI clean.fa).")
 	RootCmd.PersistentFlags().StringVarP(&length, "length", "l", "","comma-seperated read (sRNA) lengths to align")
 	RootCmd.PersistentFlags().StringVarP(&outFilePrefix, "outFilePrefix", "o", "","path/to/outfile prefix (len.csv will be appended)")
 	RootCmd.PersistentFlags().BoolVar(&noSplit, "noSplit", false, "Do not split alignment count for each read by the number of times it aligns")
