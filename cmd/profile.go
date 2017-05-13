@@ -45,7 +45,7 @@ scram2 profile -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -l 21,22,24 -o testAlign
 
 `,
 	Run: func(cmd *cobra.Command, args []string) {
-		if readFileType != "cfa" && readFileType != "fa" && readFileType != "fq" {
+		if readFileType != "cfa" && readFileType != "fa" && readFileType != "fq" && readFileType != "clean" {
 			fmt.Println("\nCan't parse read file type " + readFileType)
 			os.Exit(1)
 		}
