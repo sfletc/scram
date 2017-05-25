@@ -29,6 +29,7 @@ import (
 	"strconv"
 	"fmt"
 	"os"
+	"time"
 )
 
 // profileCmd represents the profile command
@@ -49,10 +50,14 @@ scram2 profile -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -l 21,22,24 -o testAlign
 			fmt.Println("\nCan't parse read file type " + readFileType)
 			os.Exit(1)
 		}
+		t0:=time.Now()
+		fmt.Println("\nLoading reads\n")
 		a := scram2pkg.SeqLoad(strings.Split(fastaSet1, ","), readFileType,adapter,minLen, maxLen, minCount)
+		fmt.Println("\nLoading reference\n")
 		c := scram2pkg.RefLoad(alignTo)
 		for _, nt := range strings.Split(length, ",") {
 			nt, _ := strconv.Atoi(nt)
+			fmt.Printf("\nAligning %v nt reads\n", nt)
 			d := scram2pkg.AlignReads(a, c, nt)
 			switch {
 			case noSplit == false:
@@ -64,6 +69,8 @@ scram2 profile -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -l 21,22,24 -o testAlign
 
 			}
 		}
+		t1 := time.Now()
+		fmt.Printf("\nAlignment complete.  Total time taken = %s\n",t1.Sub(t0))
 	},
 }
 func init() {
