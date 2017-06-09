@@ -60,7 +60,7 @@ Usage:
 
 #### Additional Required Flags: ####
 
-```-2, --fastxSet2```       : Comma-seperated path/to/read file set 1. GZIPped files must have .gz file extension
+```-2, --fastxSet2```       : Comma-seperated path/to/read file set 2. GZIPped files must have .gz file extension
 
 ## Worked Example
 
