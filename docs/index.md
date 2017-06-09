@@ -22,9 +22,9 @@ Usage:
 
 ```-r, --alignTo```         : Path/to/FASTA reference file
 
-```-1, --fastxSet1```       : Comma-seperated path/to/read file set 1. GZIPped files must have .gz file extension
+```-1, --fastxSet1```       : Comma-separated path/to/read file set 1. GZIPped files must have .gz file extension
 
-```-l, --length```          : Comma-seperated read (sRNA) lengths to align
+```-l, --length```          : Comma-separated read (sRNA) lengths to align
 
 ```-o, --outFilePrefix```   : Path/to/outfile prefix (_len.csv will be appended)
 
@@ -60,7 +60,35 @@ Usage:
 
 #### Additional Required Flags: ####
 
-```-2, --fastxSet2```       : Comma-seperated path/to/read file set 2. GZIPped files must have .gz file extension
+```-2, --fastxSet2```       : Comma-separated path/to/read file set 2. GZIPped files must have .gz file extension
+
+## scram2_plot.py CLI options
+
+### Profile plot ###
+
+```%run scram2_plot.py profile ```
+
+#### Required Flags: ####
+
+```-a, --alignment``` : sRNA alignment file prefix used by SCRAM2 profile (i.e. exclude _21.csv, _22.csv, _24.csv)
+
+```-l, --length``` : Comma-separated list of sRNA lengths to plot. SCRAM2 alignment files must be available for each sRNA length
+
+#### Optional Flags ####
+
+```-s, --search``` : Full header or substring of header. *Without flag, all headers will be plotted*
+
+```-cutoff``` : Min. alignment RPMR from the most abundant profile (if multi) to generate plot
+  
+```-ylim``` :  +/- y axis limit
+                          
+```-win``` : Smoothing window size (default=auto)
+
+```-pub``` : Remove all labels from profiles for editing for publication
+
+```-png``` : Export plot/s as 300 dpi .png file/s
+
+```-bin_reads``` : For plotting large profiles (i.e. chromosomes).  Assigns reads 10,000 bins prior to smoothing. X-axis shows bin, not reference position
 
 ## Worked Example
 
