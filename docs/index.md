@@ -18,7 +18,7 @@ For example:
 Usage:
   ```scram2 profile [flags]```
 
-Required Flags:
+#### Required Flags: ####
 
 ```-r, --alignTo```         : Path/to/FASTA reference file
 
@@ -30,7 +30,7 @@ Required Flags:
 
 
 
-Optional Flags:
+#### Optional Flags: ####
 
 ```-t, --readFileType```    : Read file type: cfa (collapsed FASTA), fa (FASTA), fq (FASTQ), clean (BGI clean.fa). (default "cfa")
 
@@ -43,10 +43,6 @@ Optional Flags:
 ```    --minLen```             : Minimum read length to include for RPMR normalization (default 18)
 
 ```    --noSplit```                : Do not split alignment count for each read by the number of times it aligns
-
-
-
-
 
 
 ### Compare alignment of 2 sets of read files (likely biological replicates) to multiple reference sequences
