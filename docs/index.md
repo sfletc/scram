@@ -74,8 +74,6 @@ Usage:
 
 ```-l, --length``` : Comma-separated list of sRNA lengths to plot. SCRAM2 alignment files must be available for each sRNA length
 
-#### Optional Flags ####
-
 ```-s, --search``` : Full header or substring of header. *Without flag, all headers will be plotted*
 
 ```-cutoff``` : Min. alignment RPMR from the most abundant profile (if multi) to generate plot
@@ -89,6 +87,31 @@ Usage:
 ```-png``` : Export plot/s as 300 dpi .png file/s
 
 ```-bin_reads``` : For plotting large profiles (i.e. chromosomes).  Assigns reads 10,000 bins prior to smoothing. X-axis shows bin, not reference position
+
+### Compare plot ###
+
+```%run scram2_plot.py compare ```
+
+#### Required Flags: ####
+
+```-a, --alignment``` : sRNA alignment file prefix used by SCRAM2 compare (i.e. exclude _21.csv, _22.csv, _24.csv)
+
+```-l, --length``` : Comma-separated list of sRNA lengths to plot. SCRAM2 alignment files must be available for each sRNA length
+
+
+#### Optional Flags ####
+
+```-plot_type``` : Bokeh plot type to display (log, log_error or all)
+
+```-xlab``` : x label - corresponds to -s1 treatment in SCRAM2 arguments. Used to generate .png file name
+
+```-ylab``` : y label - corresponds to -s2 treatment in SCRAM2 arguments. Used to generate .png file name
+
+```-html``` : If not using Jupyter Notebook, output interactive plot to browser as save to .html
+
+```-pub``` : Remove all labels from profiles for editing for publication
+
+```-png``` : Export plot/s as 300 dpi .png file/s
 
 ## Worked Example
 
