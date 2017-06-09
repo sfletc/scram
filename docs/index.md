@@ -7,7 +7,7 @@
 
 ### Profile alignment of 1 set of read files (likely biological replicates) to one or more reference sequences
 
-```./scram2 profile -h```
+```./scram2 profile ```
 
 Align reads of length l from 1 read file set to all sequences in a reference file
 
@@ -47,34 +47,20 @@ Usage:
 
 ### Compare alignment of 2 sets of read files (likely biological replicates) to multiple reference sequences
 
-```
-./scram2 compare -h
+```./scram2 compare```
+ 
 Compare normalised alignment counts and standard errors for 2 read file sets
 
 For example:
 
-scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2c.fa -l 21,22,24 -o testAlign
+```scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2c.fa -l 21,22,24 -o testAlign```
 
 Usage:
-  scram2 compare [flags]
+```scram2 compare [flags]```
 
-Flags:
-  -2, --fastxSet2 string   comma-separated path/to/read file set 2. GZIPped files must have .gz file extension
+#### Additional Required Flags: ####
 
-Global Flags:
-      --adapter string         3' adapter sequence to trim - FASTA & FASTQ only (default "nil")
-  -r, --alignTo string         path/to/FASTA reference file
-  -1, --fastxSet1 string       comma-seperated path/to/read file set 1. GZIPped files must have .gz file extension
-  -l, --length string          comma-seperated read (sRNA) lengths to align
-      --maxLen int             Maximum read length to include for RPMR normalization (default 32)
-      --minCount float         Minimum read count for alignment and to include for RPMR normalization (default 1)
-      --minLen int             Minimum read length to include for RPMR normalization (default 18)
-      --noSplit                Do not split alignment count for each read by the number of times it aligns
-  -o, --outFilePrefix string   path/to/outfile prefix (len.csv will be appended)
-  -t, --readFileType string    Read file type: cfa (collapsed FASTA), fa (FASTA), fq (FASTQ), clean (BGI clean.fa). (default "cfa")
-```
-
-
+```-2, --fastxSet2```       : Comma-seperated path/to/read file set 1. GZIPped files must have .gz file extension
 
 ## Worked Example
 
