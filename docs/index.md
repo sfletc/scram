@@ -13,34 +13,40 @@ Align reads of length l from 1 read file set to all sequences in a reference fil
 
 For example:
 
-scram2 profile -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -l 21,22,24 -o testAlign
+```scram2 profile -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -l 21,22,24 -o testAlign```
 
 Usage:
   ```scram2 profile [flags]```
 
-Global Flags:
+Required Flags:
 
-```    --adapter string```         : 3' adapter sequence to trim - FASTA & FASTQ only (default "nil")
+```-r, --alignTo```         : Path/to/FASTA reference file
 
-```-r, --alignTo string```         : path/to/FASTA reference file
+```-1, --fastxSet1```       : Comma-seperated path/to/read file set 1. GZIPped files must have .gz file extension
 
-```-1, --fastxSet1 string```       : comma-seperated path/to/read file set 1. GZIPped files must have .gz file extension
+```-l, --length```          : Comma-seperated read (sRNA) lengths to align
 
-```-l, --length string```          comma-seperated read (sRNA) lengths to align
+```-o, --outFilePrefix```   : Path/to/outfile prefix (_len.csv will be appended)
 
-```    --maxLen int```             Maximum read length to include for RPMR normalization (default 32)
 
-```    --minCount float```         Minimum read count for alignment and to include for RPMR normalization (default 1)
 
-```    --minLen int```             Minimum read length to include for RPMR normalization (default 18)
+Optional Flags:
 
-```    --noSplit```                Do not split alignment count for each read by the number of times it aligns
+```-t, --readFileType```    : Read file type: cfa (collapsed FASTA), fa (FASTA), fq (FASTQ), clean (BGI clean.fa). (default "cfa")
 
-```-o, --outFilePrefix string```   path/to/outfile prefix (len.csv will be appended)
+```    --adapter```         : 3' adapter sequence to trim - FASTA & FASTQ only (default "nil")  
 
-```-t, --readFileType string```    Read file type: cfa (collapsed FASTA), fa (FASTA), fq (FASTQ), clean (BGI clean.fa). (default "cfa")
+```    --maxLen```             : Maximum read length to include for RPMR normalization (default 32)
 
-  
+```    --minCount```         : Minimum read count for alignment and to include for RPMR normalization (default 1)
+
+```    --minLen```             : Minimum read length to include for RPMR normalization (default 18)
+
+```    --noSplit```                : Do not split alignment count for each read by the number of times it aligns
+
+
+
+
 
 
 ### Compare alignment of 2 sets of read files (likely biological replicates) to multiple reference sequences
