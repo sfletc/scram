@@ -48,8 +48,8 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 		}
 		t0:=time.Now()
 		fmt.Println("\nLoading reads\n")
-		a := scram2pkg.SeqLoad(strings.Split(fastaSet1,","), readFileType,adapter,minLen, maxLen, minCount)
-		b := scram2pkg.SeqLoad(strings.Split(fastaSet2,","), readFileType,adapter,minLen, maxLen, minCount)
+		a := scram2pkg.SeqLoad(strings.Split(fastaSet1,","), readFileType,adapter,minLen, maxLen, minCount, noNorm)
+		b := scram2pkg.SeqLoad(strings.Split(fastaSet2,","), readFileType,adapter,minLen, maxLen, minCount, noNorm)
 
 		fmt.Println("\nLoading reference\n")
 		c := scram2pkg.RefLoad(alignTo)

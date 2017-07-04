@@ -29,7 +29,7 @@ import (
 	"github.com/spf13/viper"
 
 )
-const version =  "0.1.7"
+const version =  "0.1.9"
 var cfgFile string
 var fastaSet1 string
 var readFileType string
@@ -42,6 +42,7 @@ var minLen int
 var maxLen int
 var minCount float64
 var adapter string
+var noNorm bool
 
 var RootCmd = &cobra.Command{
 	Use:   "scram2",
@@ -65,6 +66,7 @@ func init() {
 	RootCmd.PersistentFlags().StringVarP(&length, "length", "l", "","comma-separated read (sRNA) lengths to align")
 	RootCmd.PersistentFlags().StringVarP(&outFilePrefix, "outFilePrefix", "o", "","path/to/outfile prefix (len.csv will be appended)")
 	RootCmd.PersistentFlags().BoolVar(&noSplit, "noSplit", false, "Do not split alignment count for each read by the number of times it aligns")
+	RootCmd.PersistentFlags().BoolVar(&noNorm, "noNorm", false, "Do not normalize read counts by library size (i.e. reads per million reads)")
 	RootCmd.PersistentFlags().Lookup("noSplit").NoOptDefVal="true"
 	RootCmd.PersistentFlags().IntVar(&minLen, "minLen", 18, "Minimum read length to include for RPMR normalization")
 	RootCmd.PersistentFlags().IntVar(&maxLen, "maxLen", 32, "Maximum read length to include for RPMR normalization")
