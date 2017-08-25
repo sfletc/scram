@@ -43,6 +43,7 @@ var maxLen int
 var minCount float64
 var adapter string
 var noNorm bool
+var mir bool
 
 var RootCmd = &cobra.Command{
 	Use:   "scram2",

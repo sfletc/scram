@@ -52,28 +52,47 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 		b := scram2pkg.SeqLoad(strings.Split(fastaSet2,","), readFileType,adapter,minLen, maxLen, minCount, noNorm)
 
 		fmt.Println("\nLoading reference\n")
-		c := scram2pkg.RefLoad(alignTo)
 
-		for _, nt := range strings.Split(length,",") {
-			nt,_ := strconv.Atoi(nt)
-			fmt.Printf("\nAligning %v nt reads\n", nt)
+		switch{
+		case mir == false:
+			c := scram2pkg.RefLoad(alignTo)
+
+			for _, nt := range strings.Split(length,",") {
+				nt,_ := strconv.Atoi(nt)
+				fmt.Printf("\nAligning %v nt reads\n", nt)
+				d := scram2pkg.AlignReads(a, c, nt)
+				e := scram2pkg.AlignReads(b, c, nt)
+				switch {
+				case noSplit == false:
+
+					f := scram2pkg.CompareSplitCounts(d, a)
+
+					g := scram2pkg.CompareSplitCounts(e, b)
+					h := scram2pkg.Compare(f, g)
+					scram2pkg.CompareToCsv(h, nt, outFilePrefix)
+				default:
+
+					f := scram2pkg.CompareNoSplitCounts(d, a)
+
+					g := scram2pkg.CompareNoSplitCounts(e, b)
+					h := scram2pkg.Compare(f, g)
+					scram2pkg.CompareToCsv(h, nt, outFilePrefix)
+				}
+			}
+		default:
+			c := scram2pkg.MirLoad(alignTo)
+			d := scram2pkg.AlignMirnas(a, c)
+			e := scram2pkg.AlignMirnas(b, c)
 			switch {
-			case noSplit == false:
-				d := scram2pkg.AlignReads(a, c, nt)
-				f := scram2pkg.CompareSplitCounts(d, a)
-				e := scram2pkg.AlignReads(b, c, nt)
-				g := scram2pkg.CompareSplitCounts(e, b)
-				h := scram2pkg.Compare(f, g)
-				scram2pkg.CompareToCsv(h, nt, outFilePrefix)
+			case noSplit ==false:
+				f := scram2pkg.MirnaCompare(d,e,false)
+				scram2pkg.CompareToCsv(f,0,outFilePrefix)
 			default:
-				d := scram2pkg.AlignReads(a, c, nt)
-				f := scram2pkg.CompareNoSplitCounts(d, a)
-				e := scram2pkg.AlignReads(b, c, nt)
-				g := scram2pkg.CompareNoSplitCounts(e, b)
-				h := scram2pkg.Compare(f, g)
-				scram2pkg.CompareToCsv(h, nt, outFilePrefix)
+				f := scram2pkg.MirnaCompare(d,e,true)
+				scram2pkg.CompareToCsv(f,0,outFilePrefix)
 			}
 		}
+
 		t1 := time.Now()
 		fmt.Printf("\nAlignment complete.  Total time taken = %s\n",t1.Sub(t0))
 	},
@@ -82,4 +101,5 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 func init() {
 	RootCmd.AddCommand(compareCmd)
 	compareCmd.Flags().StringVarP(&fastaSet2, "fastxSet2", "2", "","comma-separated path/to/read file set 2. GZIPped files must have .gz file extension")
+	compareCmd.Flags().BoolVar(&mir, "mir", false, "Exact match reads to mature miRNAs")
 }
