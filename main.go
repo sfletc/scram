@@ -22,7 +22,7 @@
 
 package main
 
-import "github.com/sfletc/scram2/cmd"
+import "github.com/sfletc/scram/cmd"
 
 func main() {
 	cmd.Execute()

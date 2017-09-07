@@ -24,7 +24,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/sfletc/scram2pkg"
+	"github.com/sfletc/scramPkg"
 	"strings"
 	"strconv"
 	"fmt"
@@ -52,20 +52,20 @@ scram2 profile -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -l 21,22,24 -o testAlign
 		}
 		t0:=time.Now()
 		fmt.Println("\nLoading reads\n")
-		a := scram2pkg.SeqLoad(strings.Split(fastaSet1, ","), readFileType,adapter,minLen, maxLen, minCount ,noNorm)
+		a := scramPkg.SeqLoad(strings.Split(fastaSet1, ","), readFileType,adapter,minLen, maxLen, minCount ,noNorm)
 		fmt.Println("\nLoading reference\n")
-		c := scram2pkg.RefLoad(alignTo)
+		c := scramPkg.RefLoad(alignTo)
 		for _, nt := range strings.Split(length, ",") {
 			nt, _ := strconv.Atoi(nt)
 			fmt.Printf("\nAligning %v nt reads\n", nt)
-			d := scram2pkg.AlignReads(a, c, nt)
+			d := scramPkg.AlignReads(a, c, nt)
 			switch {
 			case noSplit == false:
-				e := scram2pkg.ProfileSplit(d, a)
-				scram2pkg.ProfileToCsv(e, c, nt, outFilePrefix)
+				e := scramPkg.ProfileSplit(d, a)
+				scramPkg.ProfileToCsv(e, c, nt, outFilePrefix)
 			default:
-				e := scram2pkg.ProfileNoSplit(d, a)
-				scram2pkg.ProfileToCsv(e, c, nt, outFilePrefix)
+				e := scramPkg.ProfileNoSplit(d, a)
+				scramPkg.ProfileToCsv(e, c, nt, outFilePrefix)
 
 			}
 		}

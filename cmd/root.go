@@ -46,9 +46,9 @@ var noNorm bool
 var mir bool
 
 var RootCmd = &cobra.Command{
-	Use:   "scram2",
-	Short: "The ultra-fast siRNA aligner v"+version,
-	Long: `The ultra-fast siRNA aligner v`+version,
+	Use:   "scram",
+	Short: "Fast and simple small RNA read alignment v"+version,
+	Long: `Fast and simple small RNA read alignment v`+version,
 
 }
 
@@ -81,7 +81,7 @@ func initConfig() {
 		viper.SetConfigFile(cfgFile)
 	}
 
-	viper.SetConfigName(".scram2") // name of config file (without extension)
+	viper.SetConfigName(".scram") // name of config file (without extension)
 	viper.AddConfigPath("$HOME")  // adding home directory as first search path
 	viper.AutomaticEnv()          // read in environment variables that match
 

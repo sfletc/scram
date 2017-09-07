@@ -24,7 +24,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/sfletc/scram2pkg"
+	"github.com/sfletc/scramPkg"
 	"strings"
 	"strconv"
 	"fmt"
@@ -48,48 +48,48 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 		}
 		t0:=time.Now()
 		fmt.Println("\nLoading reads\n")
-		a := scram2pkg.SeqLoad(strings.Split(fastaSet1,","), readFileType,adapter,minLen, maxLen, minCount, noNorm)
-		b := scram2pkg.SeqLoad(strings.Split(fastaSet2,","), readFileType,adapter,minLen, maxLen, minCount, noNorm)
+		a := scramPkg.SeqLoad(strings.Split(fastaSet1,","), readFileType,adapter,minLen, maxLen, minCount, noNorm)
+		b := scramPkg.SeqLoad(strings.Split(fastaSet2,","), readFileType,adapter,minLen, maxLen, minCount, noNorm)
 
 		fmt.Println("\nLoading reference\n")
 
 		switch{
 		case mir == false:
-			c := scram2pkg.RefLoad(alignTo)
+			c := scramPkg.RefLoad(alignTo)
 
 			for _, nt := range strings.Split(length,",") {
 				nt,_ := strconv.Atoi(nt)
 				fmt.Printf("\nAligning %v nt reads\n", nt)
-				d := scram2pkg.AlignReads(a, c, nt)
-				e := scram2pkg.AlignReads(b, c, nt)
+				d := scramPkg.AlignReads(a, c, nt)
+				e := scramPkg.AlignReads(b, c, nt)
 				switch {
 				case noSplit == false:
 
-					f := scram2pkg.CompareSplitCounts(d, a)
+					f := scramPkg.CompareSplitCounts(d, a)
 
-					g := scram2pkg.CompareSplitCounts(e, b)
-					h := scram2pkg.Compare(f, g)
-					scram2pkg.CompareToCsv(h, nt, outFilePrefix)
+					g := scramPkg.CompareSplitCounts(e, b)
+					h := scramPkg.Compare(f, g)
+					scramPkg.CompareToCsv(h, nt, outFilePrefix)
 				default:
 
-					f := scram2pkg.CompareNoSplitCounts(d, a)
+					f := scramPkg.CompareNoSplitCounts(d, a)
 
-					g := scram2pkg.CompareNoSplitCounts(e, b)
-					h := scram2pkg.Compare(f, g)
-					scram2pkg.CompareToCsv(h, nt, outFilePrefix)
+					g := scramPkg.CompareNoSplitCounts(e, b)
+					h := scramPkg.Compare(f, g)
+					scramPkg.CompareToCsv(h, nt, outFilePrefix)
 				}
 			}
 		default:
-			c := scram2pkg.MirLoad(alignTo)
-			d := scram2pkg.AlignMirnas(a, c)
-			e := scram2pkg.AlignMirnas(b, c)
+			c := scramPkg.MirLoad(alignTo)
+			d := scramPkg.AlignMirnas(a, c)
+			e := scramPkg.AlignMirnas(b, c)
 			switch {
 			case noSplit ==false:
-				f := scram2pkg.MirnaCompare(d,e,false)
-				scram2pkg.CompareToCsv(f,0,outFilePrefix)
+				f := scramPkg.MirnaCompare(d,e,false)
+				scramPkg.CompareToCsv(f,0,outFilePrefix)
 			default:
-				f := scram2pkg.MirnaCompare(d,e,true)
-				scram2pkg.CompareToCsv(f,0,outFilePrefix)
+				f := scramPkg.MirnaCompare(d,e,true)
+				scramPkg.CompareToCsv(f,0,outFilePrefix)
 			}
 		}
 
