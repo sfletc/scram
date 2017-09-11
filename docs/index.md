@@ -1,4 +1,4 @@
-![logo](https://user-images.githubusercontent.com/5491692/30258263-22944448-96fb-11e7-91ed-cefc31613523.png)
+<img src="https://user-images.githubusercontent.com/5491692/30258263-22944448-96fb-11e7-91ed-cefc31613523.png" width="200">
 
 ## Workflow
 
