@@ -1,5 +1,7 @@
 <img src="https://user-images.githubusercontent.com/5491692/30258263-22944448-96fb-11e7-91ed-cefc31613523.png" width="200">
 
+SCRAM is developed by Stephen Fletcher at Bernie Carroll's Laboratory, School of Chemistry and Molecular Biosciences, University of Queensland, Australia
+
 ## Workflow
 
 ![workflow](https://user-images.githubusercontent.com/5491692/30198690-57a70788-94b2-11e7-82ba-a36280e2310b.png)
