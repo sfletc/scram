@@ -15,7 +15,7 @@ The SCRAM pipeline is developed by Stephen Fletcher at Bernie Carroll's Laborato
 
 ----
 
-## SCRAM pipeline Installation
+## SCRAM Pipeline Installation
 
 ### 1. Use the scram_docker image
 
