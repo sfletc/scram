@@ -1,13 +1,86 @@
 <img src="https://user-images.githubusercontent.com/5491692/30258263-22944448-96fb-11e7-91ed-cefc31613523.png" width="200">
 
-SCRAM is developed by Stephen Fletcher at Bernie Carroll's Laboratory, School of Chemistry and Molecular Biosciences, University of Queensland, Australia
+The SCRAM pipeline is developed by Stephen Fletcher at Bernie Carroll's Laboratory, School of Chemistry and Molecular Biosciences, University of Queensland, Australia
 
-## Workflow
+----
+####[1. Installation](#scram-pipeline-installation)
+####[2. Workflow](#scram-workflow)
+####[3. Worked examples of the SCRAM pipeline in Jupyter Notebook](#worked-example)
+####[4. SCRAM aligner command line options](#scram-cli-options)
+####[5. SCRAM plotting module command line options](#scram-plotting-module-cli-options)
+
+----
+
+## SCRAM pipeline Installation
+
+### 1. Use the scram_docker image
+
+- The SCRAM aligner and scram_plot.py plotting script are installed, along with Jupyter notebook, on the minimal Miniconda base.
+- You'll need docker installed. Ensure your project drive is shared and you've got a decent about of RAM (i.e. 8 GB+) available.
+
+    1. Navigate to your project base directory. Your host project files (i.e. collapsed FASTA read and FASTA reference files in sub-directories) will be mounted.
+
+        Bash shell
+        ```
+        docker run -it --rm  -v `pwd`:/work -p 8888:8888 sfletcher/scram_docker
+        ```
+        Windows PowerShell
+        ```
+        docker run -it --rm  -v ${PWD}:/work -p 8888:8888 sfletcher/scram_docker
+        ```
+    2. Copy generated link with token into your browser.
+
+    3. From a Jupyter notebook file, the scram aligner can be invoked by:
+        ```
+        !scram
+        ```
+        And the scram_plot.py script by:
+        ```
+        %run /scram_plot/scram_plot.py
+        ```
+
+### 2a. Download scram binary:
+
+Pre-compiled binaries are can be found [here](https://github.com/sfletc/scram/releases) (*nix binaries may need to be made executable with ```chmod +x /path/to/binary```):
+
+
+Execute with the full binary name (e.g. scram_osx) rather than scram
+
+### 2b. Or build from source:
+
+- Go(lang) 1.8+ is required
+
+    1. Install via ```go get```
+
+        ```
+        go get github.com/sfletc/scram github.com/sfletc/scramPkg github.com/spf13/cobra github.com/spf13/viper github.com/montanaflynn/stats
+        ```
+    2. Navigate to scram directory containing main.go (e.g. ```GOPATH/src/github.com/sfletc/scram/```)
+
+        ```go install```
+    3. scram will be in the ```GOPATH/bin``` directory
+
+### 3. Install the scram_plot package and dependencies:
+
+- Python 3.5+ is required
+
+    ```git clone https://github.com/sfletc/scram_plot.git```
+
+    ```cd scram_plot```
+
+    ```python setup.py install```
+
+## SCRAM Workflow
 
 ![workflow](https://user-images.githubusercontent.com/5491692/30198690-57a70788-94b2-11e7-82ba-a36280e2310b.png)
 
+## Worked Example
 
-## scram CLI options
+For a detailed worked example of the SCRAM pipeline's capabilities, see the following link (which uses the scram_docker image):
+
+[Jupyter notebook on nbviewer](https://nbviewer.jupyter.org/github/sfletc/scram_worked_example/blob/master/scram_demonstration.ipynb)
+
+## SCRAM aligner CLI options
 
 ### Profile alignment of 1 set of read files (likely biological replicates) to one or more reference sequences
 
@@ -38,7 +111,7 @@ Usage:
 
 ```-t, --readFileType```    : Read file type: cfa (collapsed FASTA), fa (FASTA), fq (FASTQ), clean (BGI clean.fa). (default "cfa")
 
-```    --adapter```         : 3' adapter sequence to trim - FASTA & FASTQ only (default "nil")  
+```    --adapter```         : 3' adapter sequence to trim - FASTA & FASTQ only (default "nil")
 
 ```    --maxLen```             : Maximum read length to include for RPMR normalization (default 32)
 
@@ -52,7 +125,7 @@ Usage:
 ### Compare alignment of 2 sets of read files (likely biological replicates) to multiple reference sequences
 
 ```./scram compare```
- 
+
 Compare normalised alignment counts and standard errors for 2 read file sets
 
 For example:
@@ -66,7 +139,7 @@ Usage:
 
 ```-2, --fastxSet2```       : Comma-separated path/to/read file set 2. GZIPped files must have .gz file extension
 
-## scram_plot.py CLI options
+## SCRAM plotting module CLI options
 
 ### Profile plot ###
 
@@ -81,9 +154,9 @@ Usage:
 ```-s, --search``` : Full header or substring of header. *Without flag, all headers will be plotted*
 
 ```-cutoff``` : Min. alignment RPMR from the most abundant profile (if multi) to generate plot
-  
+
 ```-ylim``` :  +/- y axis limit
-                          
+
 ```-win``` : Smoothing window size (default=auto)
 
 ```-pub``` : Remove all labels from profiles for editing for publication
@@ -117,74 +190,7 @@ Usage:
 
 ```-png``` : Export plot/s as 300 dpi .png file/s
 
-## Worked Example
 
-- For a detailed worked example of scram's capabilities, see the following link (which uses the scram_docker image):
 
-[Jupyter notebook on nbviewer](https://nbviewer.jupyter.org/github/sfletc/scram_worked_example/blob/master/scram_demonstration.ipynb)
-
-## Installation
-
-### 1. Use the scram_docker image
-
-- The scram aligner and scram_plot.py plotting script are installed, along with Jupyter notebook, on the minimal Miniconda base.
-- You'll need docker installed. Ensure your project drive is shared and you've got a decent about of RAM (i.e. 8 GB+) available.
-
-    1. Navigate to your project base directory. Your host project files (i.e. collapsed FASTA read and FASTA reference files in sub-directories) will be mounted.
-    
-        Bash shell
-        ```
-        docker run -it --rm  -v `pwd`:/work -p 8888:8888 sfletcher/scram_docker
-        ```
-        Windows PowerShell
-        ```
-        docker run -it --rm  -v ${PWD}:/work -p 8888:8888 sfletcher/scram_docker
-        ```
-    2. Copy generated link with token into your browser.  
-
-    3. From a Jupyter notebook file, the scram aligner can be invoked by:
-        ```
-        !scram
-        ```
-        And the scram_plot.py script by:
-        ```
-        %run /scram_plot/scram_plot.py
-        ```
-
-### 2a. Download scram binary:
-
-- Pre-compiled binaries are can be found at (*nix binaries may need to be made executable with ```chmod +x /path/to/binary```):
-
-	[Mac OSX (64bit)](https://bitbucket.org/stevefl/scram/downloads/scram_osx)
-	
-	[Linux (64 bit)](https://bitbucket.org/stevefl/scram/downloads/scram_linux)
-	
-	[Windows (64 bit)](https://bitbucket.org/stevefl/scram/downloads/scram_win)
-
-- Execute with the full binary name (e.g. scram_osx) rather than scram
-
-### 2b. Or build from source:
-
-- Go(lang) 1.8+ is required
-    
-    1. Install via ```go get```
-    
-        ```
-        go get github.com/sfletc/scram github.com/sfletc/scramPkg github.com/spf13/cobra github.com/spf13/viper github.com/montanaflynn/stats
-        ```
-    2. Navigate to scram directory containing main.go (e.g. ```GOPATH/src/github.com/sfletc/scram/```)
-        
-        ```go install```
-    3. scram will be in the ```GOPATH/bin``` directory
-    
-### 3. Install the scram_plot package and dependencies:
-
-- Python 3.5+ is required 
-        
-    ```git clone https://github.com/sfletc/scram_plot.git```
-    
-    ```cd scram_plot```
-    
-    ```python setup.py install```
     
     
