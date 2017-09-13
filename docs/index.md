@@ -3,11 +3,11 @@
 The SCRAM pipeline is developed by Stephen Fletcher at Bernie Carroll's Laboratory, School of Chemistry and Molecular Biosciences, University of Queensland, Australia
 
 ----
-####[1. Installation](#scram-pipeline-installation)
-####[2. Workflow](#scram-workflow)
-####[3. Worked examples of the SCRAM pipeline in Jupyter Notebook](#worked-example)
-####[4. SCRAM aligner command line options](#scram-cli-options)
-####[5. SCRAM plotting module command line options](#scram-plotting-module-cli-options)
+[1. Installation](#scram-pipeline-installation)
+[2. Workflow](#scram-workflow)
+[3. Worked examples of the SCRAM pipeline in Jupyter Notebook](#worked-example)
+[4. SCRAM aligner command line options](#scram-cli-options)
+[5. SCRAM plotting module command line options](#scram-plotting-module-cli-options)
 
 ----
 
