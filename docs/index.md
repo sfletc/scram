@@ -43,6 +43,8 @@ The SCRAM pipeline is developed by Stephen Fletcher at Bernie Carroll's Laborato
         %run /scram_plot/scram_plot.py
         ```
 
+This [Gist](https://gist.github.com/sfletc/b70911d0de13bd4cde86f08b6ca32026) has a more detailed explanation of the hows and whys of Docker and scram_docker
+
 ### 2a. Download scram binary:
 
 Pre-compiled binaries are can be found [here](https://github.com/sfletc/scram/releases) (*nix binaries may need to be made executable with ```chmod +x /path/to/binary```):
@@ -77,6 +79,8 @@ Execute with the full binary name (e.g. scram_osx) rather than scram
 ## SCRAM Workflow
 
 ![workflow](https://user-images.githubusercontent.com/5491692/30198690-57a70788-94b2-11e7-82ba-a36280e2310b.png)
+
+This [Gist](https://gist.github.com/sfletc/15a739fb31e7d9200f68777dc8df6db2) has a more in-depth look at the scram miRNA aligner and plotting components 
 
 ## Worked Example
 
