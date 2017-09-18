@@ -19,77 +19,29 @@ The SCRAM pipeline is developed by Stephen Fletcher at Bernie Carroll's Laborato
 
 ### 1. Use the scram_docker image
 
-### What is Docker (and why is it useful for bioinformatics)?
+- The SCRAM aligner and scram_plot.py plotting script are installed, along with Jupyter notebook, on the minimal Miniconda base.
+- You'll need docker installed. Ensure your project drive is shared and you've got a decent about of RAM (i.e. 8 GB+) available.
 
-Long story short - it takes the pain out of installing bioinformatics software if someone's already done it for you.  
+    1. Navigate to your project base directory. Your host project files (i.e. collapsed FASTA read and FASTA reference files in sub-directories) will be mounted.
 
-Docker allows you to download images and run containers on a Windows, Mac or Linux PC.  All the software for a bioinformatics workflow can be loaded onto an image and tested before deployment.   It doesn't matter that the software is designed for Linux, and you're using a Windows PC - it'll run!!  
+        Bash shell
+        ```
+        docker run -it --rm  -v `pwd`:/work -p 8888:8888 sfletcher/scram_docker
+        ```
+        Windows PowerShell
+        ```
+        docker run -it --rm  -v ${PWD}:/work -p 8888:8888 sfletcher/scram_docker
+        ```
+    2. Copy generated link with token into your browser.
 
-But what is an image or a container?  If you take a snapshot of your PC's hard-drive, that's essentially an image.  It has an OS, whatever software you have installed, and some data files.  When you 'run' an image, a container is generated.  This is similar to a running PC - it can be interacted with, and its installed software used.  Instead of being a discrete entity like a PC, the container is virtualized.  One image can be used to generate multiple containers, which can run similtaneously on a single PC.  Often containers are deleted once the application they are performing is complete.      
-
-Redhat has a nice [outline](https://www.redhat.com/en/containers/what-is-docker):
-
-> Container tools, including Docker, provide an image-based deployment model. This makes it easy to share an application, or set of services, with all of their dependencies across multiple environments. Docker also automates deploying the application (or combined sets of processes that make up an app) inside this container environment.
-
-Rather than installing and troubleshooting software for QC, adapter trimming, read alignment, visualization and electronic lab book keeping, a single command can download a pre-configured image, and a single command can start the container.    
-
-Why is Docker great for bioinformatics?  It makes installation of complex pipelines simple and hassle free (not that the SCRAM pipeline is overly complex).  It also supports reproducible science - the same software versions can be used across multiple systems, ensuring the same outputs for a given set of inputs.  For a publication, not only can the read files be made available online in the SRA for example, but the entire pipeline that generated the data for the paper can also be stored in the cloud, allowing anyone to reproduce the results, spot process errors, and suggest improvements.  
-
-The SCRAM docker image has the following packages installed (among others).  Remember to cite the package authors if you use them!
-
-1. [The SCRAM aligner and plotter](https://sfletc.github.io/scram/)
-2. [Jupyter Notebook](https://jupyter.org/)
-3. [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
-4. [FastX-toolkit](http://hannonlab.cshl.edu/fastx_toolkit/)
-5. [Blast+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
-
-The SCRAM docker file (which is used to build the image) is [here](https://github.com/sfletc/scram_docker/blob/master/Dockerfile) if you want to take a look.
-
-### Prerequisites
-
-A mid-range PC or up - laptop or desktop.  Ideally a minimum of 8GB RAM, though 16GB+ is better for larger projects.  Remember, unless it's a Linux machine, it's running both its own OS and the SCRAM Docker container with associated OS at the same time.
-
-Easiest is a Linux machine (e.g. running Ubuntu).  Next are Windows 10 Pro or similar machines, and Apple PCs running OS X (1-click installs).  Windows 7 and (I think) Win 10 Home machines require a bit more playing around (Docker Toolbox and Virtual Box instead of Hyper-V)
-
-### Install Docker CE
-
-#### Ubuntu 
-
-Via the Terminal:
-
-``` sudo apt-get install docker.io```
-
-You'll need to use ```sudo``` or [follow this guide](https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo)
-
-#### OS X (Apple Mac)
-
-Full instructions are [here](https://store.docker.com/editions/community/docker-ce-desktop-mac)
-
-#### Windows 10 (Pro or Education)
-
-Full instructions are [here](https://store.docker.com/editions/community/docker-ce-desktop-windows)
-
-#### Windows 10 (Home) or Windows 7/8
-
-Unfortunately it's a bit more work  - full instructions are [here](https://docs.docker.com/toolbox/toolbox_install_windows/)
-
-### Start Docker for the first time (Windows 10 and Mac - skip for Linux)
-
-After starting docker, right click on the Docker icon in the taskbar / dock, and click ```settings```.  You'll probably want to un-tick the ```Start Docker when you log in``` check box.  
-
-Click on the ```Shared Drives``` tab (left), and ensure the drive with your project data is shared.  Sometimes antivirus products (like Kaspersky) can interfere, so their settings may need altering.  
-
-Next, click on the ```Advanced``` tab and give Docker sufficient CPUs and memory (RAM).  All CPUs and approximately 4GB memory *remaining* for the host OS should be OK, but check how much RAM the host OS and background processes are actually using if this is an issue.
-
-Multiple Docker images (and containers if you retain them) can take up a lot of disk space, so ensure that there is sufficient spare.  
-
-### Download the SCRAM docker image
-
-With Docker running in the background, open a terminal (Mac and Linux), Powershell (Windows 10 Pro), or the Docker terminal (Windows 10 Home, Windows7/8) and enter:
-
-```docker pull sfletcher/scram_docker```
-
-```sudo``` may be needed for Linux.  A decent internet connection is required, as there is a fair bit to download.  If the software is updated, it's likely only a portion of this will have to be (automatically) downloaded again.  
+    3. From a Jupyter notebook file, the scram aligner can be invoked by:
+        ```
+        !scram
+        ```
+        And the scram_plot.py script by:
+        ```
+        %run /scram_plot/scram_plot.py
+        ```
 
 ### 2a. Download scram binary:
 
@@ -241,8 +193,3 @@ Usage:
 ```-pub``` : Remove all labels from profiles for editing for publication
 
 ```-png``` : Export plot/s as 300 dpi .png file/s
-
-
-
-    
-    
