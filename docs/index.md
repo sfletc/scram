@@ -9,7 +9,7 @@ The SCRAM pipeline is developed by Stephen Fletcher at Bernie Carroll's Laborato
 
 [3. Worked examples of the SCRAM pipeline in Jupyter Notebook](#worked-example)
 
-[4. SCRAM aligner command line options](#scram-cli-options)
+[4. SCRAM aligner command line options](#scram-aligner-cli-options)
 
 [5. SCRAM plotting module command line options](#scram-plotting-module-cli-options)
 
@@ -42,6 +42,8 @@ The SCRAM pipeline is developed by Stephen Fletcher at Bernie Carroll's Laborato
         ```
         %run /scram_plot/scram_plot.py
         ```
+
+This [Gist](https://gist.github.com/sfletc/b70911d0de13bd4cde86f08b6ca32026) has a more detailed explanation of the hows and whys of Docker and scram_docker
 
 ### 2a. Download scram binary:
 
@@ -77,6 +79,8 @@ Execute with the full binary name (e.g. scram_osx) rather than scram
 ## SCRAM Workflow
 
 ![workflow](https://user-images.githubusercontent.com/5491692/30198690-57a70788-94b2-11e7-82ba-a36280e2310b.png)
+
+This [Gist](https://gist.github.com/sfletc/15a739fb31e7d9200f68777dc8df6db2) has a more in-depth look at the scram miRNA aligner and plotting components 
 
 ## Worked Example
 
@@ -193,8 +197,3 @@ Usage:
 ```-pub``` : Remove all labels from profiles for editing for publication
 
 ```-png``` : Export plot/s as 300 dpi .png file/s
-
-
-
-    
-    
