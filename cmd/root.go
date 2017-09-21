@@ -29,7 +29,7 @@ import (
 	"github.com/spf13/viper"
 
 )
-const version =  "0.1.9"
+const version =  "0.2.0"
 var cfgFile string
 var fastaSet1 string
 var readFileType string
