@@ -13,7 +13,7 @@ The SCRAM pipeline is developed by Stephen Fletcher at Bernie Carroll's Laborato
 
 [5. SCRAM plotting module command line options](#scram-plotting-module-cli-options)
 
-[6. FAQ](#FAQ)
+[6. FAQ](#faq)
 
 ----
 
@@ -205,4 +205,19 @@ Usage:
 1. Where's all the source code for the pipeline?
 
 THe SCRAM aligner CLI source code is [here](https://github.com/sfletc/scram).
-The SCRAM aligner package is [here](https://github.com/sfletc/scramPkg), and the scram_plot package is [here](https://github.com/sfletc/scram_plot)
+The SCRAM aligner package code is [here](https://github.com/sfletc/scramPkg), 
+and the scram_plot package code is [here](https://github.com/sfletc/scram_plot).
+
+2. How do I normalize to reads that align to my genome rather than all reads in the library?
+
+Use this handy Snakemake [workflow](https://github.com/Carroll-Lab/filter_reads). It filters away reads that don't align to your reference (i.e. genome or genome + transgene). The required software (Bowtie2, Picard etc.) is included in the Docker image.
+ 
+3. Does the workflow work without Jupyter Notebook?
+ 
+Yes, use the ```-html``` flag when using scram_plot.py to show interactive 'compare' plots in the browser rather
+ than inline in Jupyter Notebook.  Everything else is the same.
+ 
+4. Why don't my read files don't load?
+
+The default read file formate is collapsed FASTA (generated using FASTX-toolkit).  If you using FASTA
+ or FASTQ, be sure to use the ```-t``` flag when aligning (eg. ```-t fq``` or ```-t fa```)
