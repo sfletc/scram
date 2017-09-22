@@ -13,6 +13,8 @@ The SCRAM pipeline is developed by Stephen Fletcher at Bernie Carroll's Laborato
 
 [5. SCRAM plotting module command line options](#scram-plotting-module-cli-options)
 
+[6. FAQ](#FAQ)
+
 ----
 
 ## SCRAM Pipeline Installation
@@ -197,3 +199,10 @@ Usage:
 ```-pub``` : Remove all labels from profiles for editing for publication
 
 ```-png``` : Export plot/s as 300 dpi .png file/s
+
+## FAQ
+
+1. Where's all the source code for the pipeline?
+
+THe SCRAM aligner CLI source code is [here](https://github.com/sfletc/scram).
+The SCRAM aligner package is [here](https://github.com/sfletc/scramPkg), and the scram_plot package is [here](https://github.com/sfletc/scram_plot)
