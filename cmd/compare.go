@@ -47,10 +47,21 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 			os.Exit(1)
 		}
 		t0:=time.Now()
-		fmt.Println("\nLoading reads\n")
-		a := scramPkg.SeqLoad(strings.Split(fastaSet1,","), readFileType,adapter,minLen, maxLen, minCount, noNorm)
-		b := scramPkg.SeqLoad(strings.Split(fastaSet2,","), readFileType,adapter,minLen, maxLen, minCount, noNorm)
 
+		var a map[string]interface{}
+		var aFileOrder []string
+		var b map[string]interface{}
+		var bFileOrder []string
+		switch{
+		case indv == false:
+			fmt.Println("\nLoading mean and standard errors of replicate reads\n")
+			a = scramPkg.SeqLoad(strings.Split(fastaSet1, ","), readFileType, adapter, minLen, maxLen, minCount, noNorm)
+			b = scramPkg.SeqLoad(strings.Split(fastaSet2, ","), readFileType, adapter, minLen, maxLen, minCount, noNorm)
+		case indv==true:
+			fmt.Println("\nLoading individual read counts\n")
+			a,aFileOrder = scramPkg.IndvSeqLoad(strings.Split(fastaSet1, ","), readFileType, adapter, minLen, maxLen, minCount, noNorm)
+			b,bFileOrder = scramPkg.IndvSeqLoad(strings.Split(fastaSet2, ","), readFileType, adapter, minLen, maxLen, minCount, noNorm)
+			}
 		fmt.Println("\nLoading reference\n")
 
 		switch{
@@ -60,6 +71,7 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 			for _, nt := range strings.Split(length,",") {
 				nt,_ := strconv.Atoi(nt)
 				fmt.Printf("\nAligning %v nt reads\n", nt)
+
 				d := scramPkg.AlignReads(a, c, nt)
 				e := scramPkg.AlignReads(b, c, nt)
 				switch {
@@ -69,14 +81,14 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 
 					g := scramPkg.CompareSplitCounts(e, b)
 					h := scramPkg.Compare(f, g)
-					scramPkg.CompareToCsv(h, nt, outFilePrefix)
+					scramPkg.CompareToCsv(h, nt, outFilePrefix,aFileOrder,bFileOrder)
 				default:
 
 					f := scramPkg.CompareNoSplitCounts(d, a)
 
 					g := scramPkg.CompareNoSplitCounts(e, b)
 					h := scramPkg.Compare(f, g)
-					scramPkg.CompareToCsv(h, nt, outFilePrefix)
+					scramPkg.CompareToCsv(h, nt, outFilePrefix,aFileOrder,bFileOrder)
 				}
 			}
 		default:
@@ -86,10 +98,10 @@ scram2 compare -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -2 seq2a.fa,seq2b.fa,seq2
 			switch {
 			case noSplit ==false:
 				f := scramPkg.MirnaCompare(d,e,false)
-				scramPkg.CompareToCsv(f,0,outFilePrefix)
+				scramPkg.CompareToCsv(f,0,outFilePrefix, aFileOrder,bFileOrder)
 			default:
 				f := scramPkg.MirnaCompare(d,e,true)
-				scramPkg.CompareToCsv(f,0,outFilePrefix)
+				scramPkg.CompareToCsv(f,0,outFilePrefix,aFileOrder,bFileOrder)
 			}
 		}
 

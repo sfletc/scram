@@ -51,8 +51,16 @@ scram2 profile -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -l 21,22,24 -o testAlign
 			os.Exit(1)
 		}
 		t0:=time.Now()
-		fmt.Println("\nLoading reads\n")
-		a := scramPkg.SeqLoad(strings.Split(fastaSet1, ","), readFileType,adapter,minLen, maxLen, minCount ,noNorm)
+		var a map[string]interface{}
+		var fileOrder []string
+		switch{
+		case indv == false:
+			fmt.Println("\nLoading mean and standard errors of replicate reads\n")
+			a = scramPkg.SeqLoad(strings.Split(fastaSet1, ","), readFileType, adapter, minLen, maxLen, minCount, noNorm)
+		case indv==true:
+			fmt.Println("\nLoading individual read counts\n")
+			a,fileOrder = scramPkg.IndvSeqLoad(strings.Split(fastaSet1, ","), readFileType, adapter, minLen, maxLen, minCount, noNorm)
+		}
 		fmt.Println("\nLoading reference\n")
 		c := scramPkg.RefLoad(alignTo)
 		for _, nt := range strings.Split(length, ",") {
@@ -62,10 +70,10 @@ scram2 profile -r ref.fa -1 seq1a.fa,seq1b.fa,seq1c.fa -l 21,22,24 -o testAlign
 			switch {
 			case noSplit == false:
 				e := scramPkg.ProfileSplit(d, a)
-				scramPkg.ProfileToCsv(e, c, nt, outFilePrefix)
+				scramPkg.ProfileToCsv(e, c, nt, outFilePrefix,fileOrder)
 			default:
 				e := scramPkg.ProfileNoSplit(d, a)
-				scramPkg.ProfileToCsv(e, c, nt, outFilePrefix)
+				scramPkg.ProfileToCsv(e, c, nt, outFilePrefix,fileOrder)
 
 			}
 		}

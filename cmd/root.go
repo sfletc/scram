@@ -44,6 +44,7 @@ var minCount float64
 var adapter string
 var noNorm bool
 var mir bool
+var indv bool
 
 var RootCmd = &cobra.Command{
 	Use:   "scram",
@@ -68,6 +69,7 @@ func init() {
 	RootCmd.PersistentFlags().StringVarP(&outFilePrefix, "outFilePrefix", "o", "","path/to/outfile prefix (len.csv will be appended)")
 	RootCmd.PersistentFlags().BoolVar(&noSplit, "noSplit", false, "Do not split alignment count for each read by the number of times it aligns")
 	RootCmd.PersistentFlags().BoolVar(&noNorm, "noNorm", false, "Do not normalize read counts by library size (i.e. reads per million reads)")
+	RootCmd.PersistentFlags().BoolVar(&indv, "indv", false, "Output individual replicate file alignment counts. Do not use as an input to scram_plot.py")
 	RootCmd.PersistentFlags().Lookup("noSplit").NoOptDefVal="true"
 	RootCmd.PersistentFlags().IntVar(&minLen, "minLen", 18, "Minimum read length to include for RPMR normalization")
 	RootCmd.PersistentFlags().IntVar(&maxLen, "maxLen", 32, "Maximum read length to include for RPMR normalization")
