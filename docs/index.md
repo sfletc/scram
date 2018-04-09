@@ -2,6 +2,10 @@
 
 The SCRAM pipeline is developed by Stephen Fletcher at Bernie Carroll's Laboratory, School of Chemistry and Molecular Biosciences, University of Queensland, Australia
 
+If you use it, please cite:
+
+Fletcher SJ, Boden M, Mitter N, Carroll BJ. (2018) SCRAM: a pipeline for fast index-free small RNA read alignment and visualization. <i>Bioinformatics</i>. 2018 Mar 15. doi: 10.1093/bioinformatics/bty161
+
 ----
 [1. Installation](#scram-pipeline-installation)
 
