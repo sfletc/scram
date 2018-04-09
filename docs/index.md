@@ -6,6 +6,7 @@ If you use it, please cite:
 
 Fletcher SJ, Boden M, Mitter N, Carroll BJ. (2018) SCRAM: a pipeline for fast index-free small RNA read alignment and visualization. <i>Bioinformatics</i>. 2018 Mar 15. doi: 10.1093/bioinformatics/bty161
 
+The paper can be found [here](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/bty161/4938488)
 ----
 [1. Installation](#scram-pipeline-installation)
 
